@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<title>Convert</title>
+<style>
+	#num{
+		font-size: 20px;
+		color: #000080;
+      }
+      body{
+      	background-color: #E6E6FA;
+      }
+      #input{
+      	color: #778899;
+      }
+</style>
+</head>
+<body>
+<div id="b"></div>
+<script type="text/babel">
+class App extends React.Component {
+	constructor(props){
+		super(props);
+		this.state={
+			area: "",
+			length: "",
+			width: "",
+};
+}
+	render(){
+		return(
+		      <div>
+			       <h1 id="input"> Enter Length and Width of a Rectangle </h1>
+                   <lable> Length (m):</lable><input onChange={this.length}/>
+                   <br />
+                   <lable> Width (m):</lable><input onKeyPress={this.output} onChange={this.width}/>
+                   <br />
+                   <h1 id="num">Area of Rectangle: {this.state.area} m^2</h1>
+             </div>
+          );       
+          }
+          length = (event) => {
+	      this.setState({
+		  length: event.target.value
+	});
+}
+          width = (event) => {
+	      this.setState({
+		  width: event.target.value
+	});
+}
+          output = (event) => {
+	      if(event.key === 'Enter'){
+		  const len = parseInt(this.state.length);
+		  const wid = parseInt(this.state.width);
+			this.setState(state => ({
+				area: len * wid,
+				length: "",
+				width: "",
+				}));
+}
+}
+}
+ReactDOM.render(<App />, document.querySelector('#b'));
+</script>
+</body>
+</html>
+
+
+
+
+
